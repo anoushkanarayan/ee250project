@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi`
-sys.path.append('/home/pi/Dexter/GrovePi/Software/Python')
+'''sys.path.append('/home/pi/Dexter/GrovePi/Software/Python')
 
 import grovepi
 import grove_rgb_lcd as lcd
@@ -55,10 +55,11 @@ while button_pressed == False:
         break
 
     except IOError:
-        print("Error")
+        print("Error")'''
 
 # variable 'date' comes from grovepi code
-date = str(date)
+#date = str(date)
+date = 17
 full_date = "2023-" + "12-" + date
 if len(date) < 2:
     full_date = "2023-" + "12-" + "0" + date
@@ -92,9 +93,9 @@ def get_show(show):
 def print_shows_init():
     date = DATE
     show_list = get_show(date)
+    shows_formatted = "\n".join(show_list)
     
-    
-    output = "Showing on {date}: {shows}".format(date=date, shows=", ".join(show_list))
+    output = "Showing on {date}: {shows}".format(date=date, shows=", ".join(shows_formatted))
     #print(output.format(date = date, shows = show_list))
     return output
 
