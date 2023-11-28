@@ -34,7 +34,7 @@ def update_value(value):
     print("Updated Value:", value)
 
 # Button setup
-button_pin = 3
+button_pin = 4
 grovepi.pinMode(button_pin, "INPUT")
 
 # LCD backlight setup
@@ -74,8 +74,6 @@ while True:
         # Update the value
         update_value(current_value)
         update_lcd(current_value)
-
-        time.sleep(0.05)
 
         # Check if the button is pressed
         button_state = grovepi.digitalRead(button_pin)
