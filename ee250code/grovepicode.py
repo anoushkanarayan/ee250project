@@ -1,4 +1,4 @@
-'''import requests
+import requests
 import sys
 import time
 # By appending the folder of all the GrovePi libraries to the system path here,
@@ -15,23 +15,6 @@ rotary_encoder_pin_A = 2  # Connect encoder pin A to D2 on the GrovePi board
 rotary_encoder_pin_B = 3  # Connect encoder pin B to D3 on the GrovePi board
 grovepi.pinMode(rotary_encoder_pin_A, "INPUT")
 grovepi.pinMode(rotary_encoder_pin_B, "INPUT")
-
-# Analog mapping parameters
-analog_min = 0  # Minimum analog value
-analog_max = 1023  # Maximum analog value
-mapped_min = 1  # Minimum value in your desired range
-mapped_max = 31  # Maximum value in your desired range
-
-# Initialize variables
-current_value = mapped_min  # Initial value between 1 and 100
-
-def map_value(value, from_low, from_high, to_low, to_high):
-    # Map a value from one range to another
-    return int((value - from_low) / (from_high - from_low) * (to_high - to_low) + to_low)
-
-def update_value(value):
-    # This is where you can implement the logic to use the updated value
-    print("Updated Value:", value)
 
 # Button setup
 button_pin = 4
@@ -97,85 +80,5 @@ while True:
 
 # Clean up
 lcd.setText("")
-lcd.setRGB(0, 0, 0)  # Turn off backlight'''
-
-import requests
-import sys
-import time
-
-sys.path.append('/home/pi/Dexter/GrovePi/Software/Python')
-
-import grovepi
-import grove_rgb_lcd as lcd
-
-rotary_encoder_pin_A = 2
-rotary_encoder_pin_B = 3
-grovepi.pinMode(rotary_encoder_pin_A, "INPUT")
-grovepi.pinMode(rotary_encoder_pin_B, "INPUT")
-
-analog_min = 0
-analog_max = 1023
-mapped_min = 1
-mapped_max = 31
-
-current_value = mapped_min
-date = None
-button_pressed = False
-
-button_pin = 4
-grovepi.pinMode(button_pin, "INPUT")
-
-lcd.setRGB(0, 255, 0)
-
-def map_value(value, from_low, from_high, to_low, to_high):
-    return int((value - from_low) / (from_high - from_low) * (to_high - to_low) + to_low)
-
-def update_value(value):
-    print("Updated Value:", value)
-
-def update_lcd(value):
-    lcd.setText("Day of Dec: {}".format(value))
-
-last_encoded = 0
-last_switch_state = 0
-switch_state = 0
-
-while True:
-    try:
-        rotary_value_A = grovepi.digitalRead(rotary_encoder_pin_A)
-        rotary_value_B = grovepi.digitalRead(rotary_encoder_pin_B)
-
-        switch_state = grovepi.digitalRead(button_pin)
-
-        if switch_state != last_switch_state:
-            if switch_state == 1:
-                date = current_value
-                button_pressed = True
-                print("Day of December:", date)
-            else:
-                button_pressed = False
-
-        last_switch_state = switch_state
-
-        if rotary_value_A != last_encoded:
-            if rotary_value_A == 1 and rotary_value_B == 0:
-                current_value = max(mapped_min, current_value - 1)
-            elif rotary_value_A == 0 and rotary_value_B == 1:
-                current_value = min(mapped_max, current_value + 1)
-
-            update_value(current_value)
-            update_lcd(current_value)
-
-        last_encoded = rotary_value_A
-
-        time.sleep(0.1)
-
-    except KeyboardInterrupt:
-        break
-
-    except IOError:
-        print("Error")
-
-lcd.setText("")
-lcd.setRGB(0, 0, 0)
+lcd.setRGB(0, 0, 0)  # Turn off backlight
 
