@@ -2,7 +2,7 @@ from flask import Flask, jsonify, render_template
 import requests
 import random
 import sys
-from io import StringIO
+#from io import StringIO
 import time
 
 app = Flask(__name__)
@@ -13,9 +13,6 @@ sys.path.append('/home/pi/Dexter/GrovePi/Software/Python')
 
 import grovepi
 import grove_rgb_lcd as lcd
-
-output_buffer = StringIO()
-sys.stdout = output_buffer
 
 rotary_encoder_pin_A = 2 
 rotary_encoder_pin_B = 3  
@@ -113,39 +110,10 @@ SHOW_APP = {
     'init': print_shows_init
 }
 
+@app.route('/')
+def index():
+    return render_template('index.html', output=print_shows_init())
 
-'''if __name__ == '__main__':
-    print_shows_init()
-
-@app.route('/api', methods=['GET'])
-def get_show_data():
-    date = DATE
-    show_list = get_show(date)
-    return jsonify(show_list)
-
+# Run the Flask application
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)'''
-
-sys.stdout = sys.__stdout__
-
-# Extract the captured output
-captured_output = output_buffer.getvalue()
-
-# Create or open the HTML file
-with open("index.html", "w") as html_file:
-    # Write the HTML structure
-    html_file.write("""<!DOCTYPE html>
-<html>
-<head>
-    <title>TV Shows On Selected Night</title>
-</head>
-<body>
-    <pre id="output">""")
-
-    # Write the captured output
-    html_file.write(captured_output)
-
-    # Write the closing tags
-    html_file.write("""</pre>
-</body>
-</html>""")
+    app.run(host='0.0.0.0', port=5000)
