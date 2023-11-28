@@ -1,15 +1,12 @@
+import requests
 import sys
 import time
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi`
-sys.path.append('../Software/Python/')
+sys.path.append('/home/pi/Dexter/GrovePi/Software/Python')
 
 import grovepi
-
-# This append is to support importing the LCD library.
-sys.path.append('../Software/Python/grove_rgb_lcd')
-
-from grove_rgb_lcd import *
+import grove_rgb_lcd as lcd
 
 # Rotary Encoder setup
 rotary_encoder_pin = 2
@@ -20,7 +17,7 @@ button_pin = 3
 grovepi.pinMode(button_pin, "INPUT")
 
 # LCD backlight setup
-grove_rgb_lcd.setRGB(0, 255, 0)  # Set initial backlight color to green
+lcd.setRGB(0, 255, 0)  # Set initial backlight color to green
 
 # Initialize variables
 current_value = 1
@@ -28,7 +25,7 @@ date = None
 button_pressed = False
 
 def update_lcd(value):
-    grove_rgb_lcd.setText("Value: {}".format(value))
+    lcd.setText("Value: {}".format(value))
 
 while True:
     try:
@@ -62,5 +59,5 @@ while True:
         print("Error")
 
 # Clean up
-grove_rgb_lcd.setText("")
-grove_rgb_lcd.setRGB(0, 0, 0)  # Turn off backlight
+lcd.setText("")
+lcd.setRGB(0, 0, 0)  # Turn off backlight
