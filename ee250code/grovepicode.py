@@ -65,7 +65,7 @@ if len(date) < 2:
 DATE = full_date 
 #date format: year-month-day
 
-htmloutput = ""
+htmloutput = "hello"
 def get_show(show):
 
     params = {
@@ -107,7 +107,7 @@ SHOW_APP = {
 
 @app.route('/')
 def index():
-    return render_template('index.html', output=htmloutput)
+    return render_template('index.html', output=getshow(date))
 
 # Run the Flask application
 if __name__ == '__main__':
