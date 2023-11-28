@@ -43,7 +43,7 @@ while button_pressed == False:
             button_pressed = True
             print("Day of December:", date)
 
-        time.sleep(0.3)
+        time.sleep(0.5)
 
     except KeyboardInterrupt:
         break
