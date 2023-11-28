@@ -65,7 +65,6 @@ if len(date) < 2:
 DATE = full_date 
 #date format: year-month-day
 
-htmloutput = "hello"
 def get_show(show):
 
     params = {
@@ -81,7 +80,6 @@ def get_show(show):
         for shows in data:
             show_name = shows['show']['name']
             print(show_name)
-            htmloutput = htmloutput + ", " + show_name
 
     else:
         print('error: got response code %d' % response.status_code)
@@ -107,7 +105,7 @@ SHOW_APP = {
 
 @app.route('/')
 def index():
-    return render_template('index.html', output=get_show(date))
+    return render_template('index.html', output=get_show(DATE))
 
 # Run the Flask application
 if __name__ == '__main__':
