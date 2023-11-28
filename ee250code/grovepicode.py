@@ -25,15 +25,15 @@ date = None
 button_pressed = False
 
 def update_lcd(value):
-    lcd.setText("Value: {}".format(value))
+    lcd.setText("Day of Dec: {}".format(value))
 
 while True:
     try:
         # Read the rotary encoder value
-        rotary_value = grovepi.analogRead(rotary_encoder_pin)
+        rotary_value = grovepi.digitalRead(rotary_encoder_pin)
 
         # Map the rotary value to the desired range (1-31)
-        current_value = int((rotary_value / 1023.0) * 30) + 1
+        current_value = int((rotary_value / 1023.0)) + 1 # * 30
 
         # Update LCD with current value
         update_lcd(current_value)
@@ -44,7 +44,7 @@ while True:
             # Button is pressed for the first time
             date = current_value
             button_pressed = True
-            print("Value frozen and stored in 'date':", date)
+            print("Day of December':", date)
 
         elif button_state == 0 and button_pressed:
             # Button is released
