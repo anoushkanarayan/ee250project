@@ -24,7 +24,6 @@ lcd.setRGB(0, 255, 0)
 
 def update_lcd(value):
     lcd.setText("Day of Dec: {}".format(value))
-    print("Updated Value:", value)
 
 while button_pressed == False:
     try:
