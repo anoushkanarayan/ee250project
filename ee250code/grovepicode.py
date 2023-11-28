@@ -58,8 +58,7 @@ while button_pressed == False:
         print("Error")'''
 
 # variable 'date' comes from grovepi code
-#date = str(date)
-date = 17
+date = str(date)
 full_date = "2023-" + "12-" + date
 if len(date) < 2:
     full_date = "2023-" + "12-" + "0" + date
