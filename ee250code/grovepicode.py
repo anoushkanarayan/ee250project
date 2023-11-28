@@ -94,7 +94,7 @@ def print_shows_init():
     show_list = get_show(date)
     shows_formatted = "<br>".join(show_list)
     
-    output = "Showing on {date}: {shows}".format(date=date, shows=shows_formatted)
+    output = "Showing on {date}: <br>{shows}".format(date=date, shows=shows_formatted)
     #print(output.format(date = date, shows = show_list))
     return output
 
