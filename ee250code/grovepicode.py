@@ -16,6 +16,23 @@ rotary_encoder_pin_B = 3  # Connect encoder pin B to D3 on the GrovePi board
 grovepi.pinMode(rotary_encoder_pin_A, "INPUT")
 grovepi.pinMode(rotary_encoder_pin_B, "INPUT")
 
+# Analog mapping parameters
+analog_min = 0  # Minimum analog value
+analog_max = 1023  # Maximum analog value
+mapped_min = 1  # Minimum value in your desired range
+mapped_max = 31  # Maximum value in your desired range
+
+# Initialize variables
+current_value = mapped_min  # Initial value between 1 and 100
+
+def map_value(value, from_low, from_high, to_low, to_high):
+    # Map a value from one range to another
+    return int((value - from_low) / (from_high - from_low) * (to_high - to_low) + to_low)
+
+def update_value(value):
+    # This is where you can implement the logic to use the updated value
+    print("Updated Value:", value)
+
 # Button setup
 button_pin = 4
 grovepi.pinMode(button_pin, "INPUT")
