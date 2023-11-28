@@ -107,7 +107,7 @@ SHOW_APP = {
 
 @app.route('/')
 def index():
-    return render_template('index.html', output=getshow(date))
+    return render_template('index.html', output=get_show(date))
 
 # Run the Flask application
 if __name__ == '__main__':
