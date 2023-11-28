@@ -1,11 +1,11 @@
-#from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import requests
 import random
 import sys
 from io import StringIO
 import time
 
-#app = Flask(__name__)
+app = Flask(__name__)
 
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi`
