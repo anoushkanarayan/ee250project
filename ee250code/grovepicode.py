@@ -71,13 +71,11 @@ while True:
         # Map the value to the desired range
         analog_value = map_value(current_value, mapped_min, mapped_max, analog_min, analog_max)
 
-        # Update the value and perform any desired action
+        # Update the value
         update_value(analog_value)
+        update_lcd(analog_value)
 
         time.sleep(0.05)
-
-        # Update LCD with current value
-        update_lcd(current_value)
 
         # Check if the button is pressed
         button_state = grovepi.digitalRead(button_pin)
