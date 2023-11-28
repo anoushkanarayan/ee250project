@@ -9,70 +9,38 @@ import grovepi
 import grove_rgb_lcd as lcd
 
 # Rotary Encoder setup
-#rotary_encoder_pin = 2
-#grovepi.pinMode(rotary_encoder_pin, "INPUT")
 rotary_encoder_pin_A = 2  # Connect encoder pin A to D2 on the GrovePi board
 rotary_encoder_pin_B = 3  # Connect encoder pin B to D3 on the GrovePi board
 grovepi.pinMode(rotary_encoder_pin_A, "INPUT")
 grovepi.pinMode(rotary_encoder_pin_B, "INPUT")
 
-# Analog mapping parameters
-analog_min = 0  # Minimum analog value
-analog_max = 1023  # Maximum analog value
-mapped_min = 1  # Minimum value in your desired range
-mapped_max = 31  # Maximum value in your desired range
-
-# Initialize variables
-current_value = mapped_min  # Initial value between 1 and 100
-
-def map_value(value, from_low, from_high, to_low, to_high):
-    # Map a value from one range to another
-    return int((value - from_low) / (from_high - from_low) * (to_high - to_low) + to_low)
-
-def update_value(value):
-    # This is where you can implement the logic to use the updated value
-    print("Updated Value:", value)
-
 # Button setup
 button_pin = 4
 grovepi.pinMode(button_pin, "INPUT")
 
-# LCD backlight setup
-lcd.setRGB(0, 255, 0)  # Set initial backlight color to green
-
-# Initialize variables
 current_value = 1
 date = None
 button_pressed = False
+lcd.setRGB(0, 255, 0)
 
 def update_lcd(value):
     lcd.setText("Day of Dec: {}".format(value))
+    print("Updated Value:", value)
 
 while True:
     try:
-        # Read the rotary encoder value
-        #rotary_value = grovepi.digitalRead(rotary_encoder_pin)
-
-        # Map the rotary value to the desired range (1-31)
-        #current_value = int((rotary_value / 1023.0)) + 1 # * 30
-
-        # Read the rotary encoder values
         rotary_value_A = grovepi.digitalRead(rotary_encoder_pin_A)
         rotary_value_B = grovepi.digitalRead(rotary_encoder_pin_B)
 
         # Check for changes in encoder values
         if rotary_value_A == 0 and rotary_value_B == 1:
-            # Encoder is turned clockwise
-            current_value = min(mapped_max, current_value + 1)
-        elif rotary_value_A == 1 and rotary_value_B == 0:
-            # Encoder is turned counterclockwise
-            current_value = max(mapped_min, current_value - 1)
-
-        # Map the value to the desired range
-        #current_value = map_value(current_value, mapped_min, mapped_max, analog_min, analog_max)
+            if current_value == 31:
+                current_value = 1
+            current_value = min(31, current_value + 1)
+        #elif rotary_value_A == 1 and rotary_value_B == 0:
+            #current_value = max(1, current_value - 1)
 
         # Update the value
-        update_value(current_value)
         update_lcd(current_value)
 
         # Check if the button is pressed
