@@ -1,11 +1,11 @@
 from flask import Flask, jsonify
-
-app = Flask(__name__)
-
 import requests
 import random
 import sys
 import time
+
+app = Flask(__name__)
+
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi`
 sys.path.append('/home/pi/Dexter/GrovePi/Software/Python')
