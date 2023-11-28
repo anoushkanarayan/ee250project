@@ -55,10 +55,8 @@ while button_pressed == False:
 date = str(date)
 full_date = "2023-" + "12-" + date
 if len(date) < 2:
-    print("hi")
-    date = "0" + str(date)
+    full_date = "2023-" + "12-" + "0" + date
 DATE = full_date 
-print(DATE)
 #date format: year-month-day
 
 
