@@ -66,7 +66,7 @@ DATE = full_date
 #date format: year-month-day
 
 def get_show(show):
-
+    show_names = []
     params = {
         "country": 'US',
         "date": DATE
@@ -79,22 +79,23 @@ def get_show(show):
 
         for shows in data:
             show_name = shows['show']['name']
-            print(show_name)
+            #print(show_name)
+            show_names.append(show_name)
 
     else:
         print('error: got response code %d' % response.status_code)
         print(response.text)
         return 0.0, 0.0
+    
+    return show_names
 
 def print_shows_init():
     date = DATE
     show_list = get_show(date)
     
     
-    output = "{date} show list: {shows}"
+    output = "{date} show list: {shows}".format(date=date, shows=", ".join(show_list))
     #print(output.format(date = date, shows = show_list))
-    output = output.format(date = date, shows = show_list)
-
     return output
 
 
@@ -105,7 +106,7 @@ SHOW_APP = {
 
 @app.route('/')
 def index():
-    return render_template('index.html', output=get_show(DATE))
+    return render_template('index.html', output=print_shows_init())
 
 # Run the Flask application
 if __name__ == '__main__':
