@@ -30,6 +30,7 @@ lcd.setRGB(0, 255, 0)
 def update_lcd(value):
     lcd.setText("Day of Dec: {}".format(value))
 
+print("Running...")
 while button_pressed == False:
     try:
         rotary_value_A = grovepi.digitalRead(rotary_encoder_pin_A)
@@ -64,7 +65,7 @@ if len(date) < 2:
 DATE = full_date 
 #date format: year-month-day
 
-output = ""
+htmloutput = ""
 def get_show(show):
 
     params = {
@@ -80,14 +81,14 @@ def get_show(show):
         for shows in data:
             show_name = shows['show']['name']
             print(show_name)
-            output = output + ", " + show_name
+            htmloutput = htmloutput + ", " + show_name
 
     else:
         print('error: got response code %d' % response.status_code)
         print(response.text)
         return 0.0, 0.0
 
-'''def print_shows_init():
+def print_shows_init():
     date = DATE
     show_list = get_show(date)
     
@@ -96,7 +97,7 @@ def get_show(show):
     #print(output.format(date = date, shows = show_list))
     output = output.format(date = date, shows = show_list)
 
-    return output'''
+    return output
 
 
 SHOW_APP = {
@@ -106,7 +107,7 @@ SHOW_APP = {
 
 @app.route('/')
 def index():
-    return render_template('index.html', output=output)
+    return render_template('index.html', output=htmloutput)
 
 # Run the Flask application
 if __name__ == '__main__':
