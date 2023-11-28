@@ -56,6 +56,7 @@ full_date = "2023-" + "12-" + str(date)
 if len(str(date)) < 2:
     date = "0" + str(date)
 DATE = full_date 
+print(DATE)
 #date format: year-month-day
 
 
