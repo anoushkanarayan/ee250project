@@ -64,8 +64,9 @@ if len(date) < 2:
 DATE = full_date 
 #date format: year-month-day
 
-
+output = ""
 def get_show(show):
+
     params = {
         "country": 'US',
         "date": DATE
@@ -79,14 +80,15 @@ def get_show(show):
         for shows in data:
             show_name = shows['show']['name']
             print(show_name)
+            output = output + ", " + show_name
 
     else:
         print('error: got response code %d' % response.status_code)
         print(response.text)
         return 0.0, 0.0
 
-def print_shows_init():
-    '''date = DATE
+'''def print_shows_init():
+    date = DATE
     show_list = get_show(date)
     
     
@@ -96,22 +98,6 @@ def print_shows_init():
 
     return output'''
 
-    output = ""
-
-    params = {
-        "country": 'US',
-        "date": DATE
-    }
-
-    response = requests.get('https://api.tvmaze.com/schedule', params)
-
-    if response.status_code == 200: # Status: OK
-        data = response.json()
-
-        for shows in data:
-            show_name = shows['show']['name']
-            output += ", " + show_name
-
 
 SHOW_APP = {
     'name': 'DATE',
@@ -120,7 +106,7 @@ SHOW_APP = {
 
 @app.route('/')
 def index():
-    return render_template('index.html', output=print_shows_init())
+    return render_template('index.html', output=output)
 
 # Run the Flask application
 if __name__ == '__main__':
