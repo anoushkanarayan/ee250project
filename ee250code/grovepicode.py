@@ -90,11 +90,9 @@ def print_shows_init():
     show_list = get_show(date)
     
     
-    for show in show_list:
-
-        output = "{date} summary: {shows}"
-        print(output.format(date = date, shows = show))
-        output = output.format(date = date, shows = show)
+    output = "{date} show list: {shows}"
+    print(output.format(date = date, shows = show_list))
+    output = output.format(date = date, shows = show_list)
 
     return output
 
