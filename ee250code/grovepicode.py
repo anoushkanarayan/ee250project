@@ -1,3 +1,7 @@
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
 import requests
 import random
 import sys
@@ -109,3 +113,11 @@ SHOW_APP = {
 if __name__ == '__main__':
     print_shows_init()
 
+@app.route('/api', methods=['GET'])
+def get_show_data():
+    date = DATE
+    show_list = get_show(date)
+    return jsonify(show_list)
+
+if __name__ == '__main__':
+    app.run(debug=True)
