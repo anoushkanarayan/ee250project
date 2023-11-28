@@ -35,7 +35,7 @@ while True:
         # Check for changes in encoder values
         if rotary_value_A == 0 and rotary_value_B == 1:
             if current_value == 31:
-                current_value = 1
+                current_value = 0
             current_value = min(31, current_value + 1)
         #elif rotary_value_A == 1 and rotary_value_B == 0:
             #current_value = max(1, current_value - 1)
