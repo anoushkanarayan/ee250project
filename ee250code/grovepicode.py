@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi`
-'''sys.path.append('/home/pi/Dexter/GrovePi/Software/Python')
+sys.path.append('/home/pi/Dexter/GrovePi/Software/Python')
 
 import grovepi
 import grove_rgb_lcd as lcd
@@ -55,7 +55,7 @@ while button_pressed == False:
         break
 
     except IOError:
-        print("Error")'''
+        print("Error")
 
 # variable 'date' comes from grovepi code
 date = str(date)
