@@ -91,7 +91,7 @@ def print_shows_init():
     
     
     output = "{date} show list: {shows}"
-    print(output.format(date = date, shows = show_list))
+    #print(output.format(date = date, shows = show_list))
     output = output.format(date = date, shows = show_list)
 
     return output
