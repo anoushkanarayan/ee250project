@@ -69,7 +69,7 @@ while True:
             current_value = max(mapped_min, current_value - 1)
 
         # Map the value to the desired range
-        current_value = map_value(current_value, mapped_min, mapped_max, analog_min, analog_max)
+        #current_value = map_value(current_value, mapped_min, mapped_max, analog_min, analog_max)
 
         # Update the value
         update_value(current_value)
