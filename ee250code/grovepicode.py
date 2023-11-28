@@ -56,7 +56,7 @@ while button_pressed == False:
             # Button is released
             #button_pressed = False
 
-        time.sleep(0.1)
+        time.sleep(0.3)
 
     except KeyboardInterrupt:
         break
