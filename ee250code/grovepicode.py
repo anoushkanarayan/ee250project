@@ -79,14 +79,6 @@ def get_show(show):
         for shows in data:
             show_name = shows['show']['name']
             print(show_name)
-       
-        '''
-       
-        # Extracts the summary from the data
-        output = (data["summary"])
-        #print(output) 
-        return output
-        '''
 
     else:
         print('error: got response code %d' % response.status_code)
@@ -94,7 +86,7 @@ def get_show(show):
         return 0.0, 0.0
 
 def print_shows_init():
-    date = DATE
+    '''date = DATE
     show_list = get_show(date)
     
     
@@ -102,7 +94,23 @@ def print_shows_init():
     #print(output.format(date = date, shows = show_list))
     output = output.format(date = date, shows = show_list)
 
-    return output
+    return output'''
+
+    output = ""
+
+    params = {
+        "country": 'US',
+        "date": DATE
+    }
+
+    response = requests.get('https://api.tvmaze.com/schedule', params)
+
+    if response.status_code == 200: # Status: OK
+        data = response.json()
+
+        for shows in data:
+            show_name = shows['show']['name']
+            output += ", " + show_name
 
 
 SHOW_APP = {
