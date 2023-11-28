@@ -65,7 +65,7 @@ while button_pressed == False:
         print("Error")
 
 # variable 'date' comes from grovepi code
-full_date = "2023-" + "12-" + date
+full_date = "2023-" + "12-" + str(date)
 DATE = full_date 
 #date format: year-month-day
 
