@@ -2,7 +2,6 @@ from flask import Flask, jsonify, render_template
 import requests
 import random
 import sys
-#from io import StringIO
 import time
 
 app = Flask(__name__)
@@ -108,6 +107,5 @@ SHOW_APP = {
 def index():
     return render_template('index.html', output=print_shows_init())
 
-# Run the Flask application
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
