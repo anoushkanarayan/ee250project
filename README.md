@@ -8,3 +8,5 @@ Select your date on the RPi and you should see the Flask application begin in th
 Go to Mozilla Firfox on VM and go to http://172.20.10.8:5000 to see the website with the updated guide (sub with IP address of your RPi if necessary).
 
 No libraries used but we used the Flask framework and the TVmaze API.
+
+Github Link: https://github.com/anoushkanarayan/ee250project.git
